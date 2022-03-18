@@ -1,132 +1,132 @@
 //---------------------------------------------------------------------------
 //imports
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import Box from '@mui/material/Box'
-import './Help.css'
-import { useState, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Button from '@mui/material/Button'
-import Typography from '@material-ui/core/Typography'
-import Stack from '@mui/material/Stack'
-import Rating from '@mui/material/Rating'
-import stone from './stone.png'
-import coin from './Cryptonite Logo (Gold).png'
-import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt'
-import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt'
-import { db } from '../../firebase'
-import { collection, addDoc } from 'firebase/firestore'
-import { CryptoState } from '../../CryptoContext'
+import React from "react";
+import { useForm } from "react-hook-form";
+import Box from "@mui/material/Box";
+import "./Help.css";
+import { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@mui/material/Button";
+import Typography from "@material-ui/core/Typography";
+import Stack from "@mui/material/Stack";
+import Rating from "@mui/material/Rating";
+import stone from "./stone.png";
+import coin from "./Cryptonite Logo (Gold).png";
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
+import { db } from "../../firebase";
+import { collection, addDoc } from "firebase/firestore";
+import { CryptoState } from "../../CryptoContext";
+import FormRating from "./FormRating";
 
 //---------------------------------------------------------------------------
 //Styling and responsiveness
 const useStyles = makeStyles((theme) => ({
   feedbackForm: {
-    padding: '20px 0px 30px 0px',
+    padding: "20px 0px 30px 0px",
   },
   stackCont: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    [theme.breakpoints.up('xs')]: {
-      width: '90%',
+    justifyContent: "center",
+    alignItems: "center",
+    [theme.breakpoints.up("xs")]: {
+      width: "90%",
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up("md")]: {
       width: 600,
     },
   },
   feedbackTitle: {
-    display: 'flex',
-    justifyContent: 'center',
-    fontFamily: 'Antonio',
+    display: "flex",
+    justifyContent: "center",
+    fontFamily: "Antonio",
     fontWeight: 550,
     letterSpacing: 3,
   },
 
   feedbackText: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    textAlign: 'center',
-    fontFamily: 'Antonio',
+    display: "flex",
+    justifyContent: "center",
+    flexWrap: "wrap",
+    textAlign: "center",
+    fontFamily: "Antonio",
     fontSize: 22,
     marginTop: 20,
-    padding: '20px 0 20px 0',
+    padding: "20px 0 20px 0",
   },
   buttonFont: {
-    fontFamily: 'Antonio',
+    fontFamily: "Antonio",
     fontSize: 20,
   },
   emeraldStone: {
     width: 100,
-    [theme.breakpoints.up('xs')]: {
-      width: '90%',
+    [theme.breakpoints.up("xs")]: {
+      width: "90%",
     },
   },
   greyStone: {
     width: 100,
-    filter: 'grayscale(100%)',
-    [theme.breakpoints.up('xs')]: {
-      width: '90%',
+    filter: "grayscale(100%)",
+    [theme.breakpoints.up("xs")]: {
+      width: "90%",
     },
   },
   goldCoin: {
     width: 60,
-    marginLeft: '20px',
-    [theme.breakpoints.up('xs')]: {
-      width: '70%',
+    marginLeft: "20px",
+    [theme.breakpoints.up("xs")]: {
+      width: "70%",
     },
   },
   greyCoin: {
     width: 60,
-    filter: 'grayscale(100%)',
-    marginLeft: '20px',
-    [theme.breakpoints.up('xs')]: {
-      width: '70%',
+    filter: "grayscale(100%)",
+    marginLeft: "20px",
+    [theme.breakpoints.up("xs")]: {
+      width: "70%",
     },
   },
   thumbsUp: {
-    margin: '20px 50px 20px 50px',
-    [theme.breakpoints.up('xs')]: {
-      margin: '0px 20px',
-      width: '70%',
+    margin: "20px 50px 20px 50px",
+    [theme.breakpoints.up("xs")]: {
+      margin: "0px 20px",
+      width: "70%",
     },
   },
   thumbsDown: {
-    margin: '20px 50px 20px 50px',
-    [theme.breakpoints.up('xs')]: {
-      margin: '0px 20px',
-      width: '70%',
+    margin: "20px 50px 20px 50px",
+    [theme.breakpoints.up("xs")]: {
+      margin: "0px 20px",
+      width: "70%",
     },
   },
   textArea: {
-    width: '100%',
+    width: "100%",
     height: 200,
-    fontFamily: 'Antonio',
+    fontFamily: "Antonio",
     marginTop: 50,
     padding: 20,
     fontSize: 20,
     borderRadius: 15,
   },
-}))
+}));
 
 //---------------------------------------------------------------------------
 //Feedback component structure
 export default function Feedback() {
   //Variables and states
-  const classes = useStyles()
+  const classes = useStyles();
   const { register, handleSubmit, formState } = useForm({
-    mode: 'onChange',
-  })
+    mode: "onChange",
+  });
 
-  const [rating1, setRating1] = useState(0)
-  const [rating2, setRating2] = useState(0)
-  const [like, setLike] = useState('white')
-  const [dislike, setDislike] = useState('white')
-  const [recommend, setRecommend] = useState()
-  const [input, setInput] = useState()
-  const [feedbackform, setFeedbackform] = useState()
-  const { setAlert } = CryptoState()
-
+  const [rating1, setRating1] = useState(0);
+  const [rating2, setRating2] = useState(0);
+  const [like, setLike] = useState("white");
+  const [dislike, setDislike] = useState("white");
+  const [recommend, setRecommend] = useState();
+  const [input, setInput] = useState();
+  const [feedbackform, setFeedbackform] = useState();
+  const { setAlert } = CryptoState();
   // actions on the thumbs up/ thumbs down icon
 
   const onEnterLike = (data) => {
@@ -160,11 +160,11 @@ export default function Feedback() {
       setDislike("white");
       setRecommend("yes");
     }
-    if (like === '#66ff00') {
-      setLike('white')
-      setRecommend()
+    if (like === "#66ff00") {
+      setLike("white");
+      setRecommend();
     }
-  }
+  };
   const dynamicDisLike = () => {
     if (dislike === "#ebaca2" && like === "white") {
       setDislike("red");
@@ -175,11 +175,11 @@ export default function Feedback() {
       setLike("white");
       setRecommend("no");
     }
-    if (dislike === 'red') {
-      setDislike('white')
-      setRecommend()
+    if (dislike === "red") {
+      setDislike("white");
+      setRecommend();
     }
-  }
+  };
 
   // data output stored in an object
   const formdata = {
@@ -204,29 +204,29 @@ export default function Feedback() {
     if (
       rating1 > 0 &&
       rating2 > 0 &&
-      (like === '#66ff00' || dislike === 'red') &&
+      (like === "#66ff00" || dislike === "red") &&
       input.length > 0
     ) {
-      console.log(formdata)
-      setInput('')
-      setRating1(0)
-      setRating2(0)
-      setLike('white')
-      setDislike('white')
-      newForm()
+      console.log(formdata);
+      setInput("");
+      setRating1(0);
+      setRating2(0);
+      setLike("white");
+      setDislike("white");
+      newForm();
       setAlert({
         open: true,
         message: `Your feedback has been submitted. Thank You`,
-        type: 'success',
-      })
+        type: "success",
+      });
     } else {
       setAlert({
         open: true,
         message: `Feedback submission error. Please make sure to fill all fields`,
-        type: 'error',
-      })
+        type: "error",
+      });
     }
-  }
+  };
 
   // const averageRating = formdata.uxRating + form
 
@@ -235,12 +235,12 @@ export default function Feedback() {
       <Box
         className="feedback-form"
         sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          flexDirection: 'column',
-          alignItems: 'center',
-          paddingTop: '30px',
-          '& > :not(style)': {
+          display: "flex",
+          flexWrap: "wrap",
+          flexDirection: "column",
+          alignItems: "center",
+          paddingTop: "30px",
+          "& > :not(style)": {
             m: 1,
           },
         }}
@@ -256,24 +256,24 @@ export default function Feedback() {
             name="rating1"
             value={rating1}
             style={{
-              justifyContent: 'center',
-              alignItems: 'center',
+              justifyContent: "center",
+              alignItems: "center",
             }}
             precision={1}
             onChange={(_, value) => {
-              setRating1(value)
+              setRating1(value);
             }}
             icon={
               <img
                 src={stone}
-                alt={'green-crystal'}
+                alt={"green-crystal"}
                 className={classes.emeraldStone}
               />
             }
             emptyIcon={
               <img
                 src={stone}
-                alt={'grey-crystal'}
+                alt={"grey-crystal"}
                 className={classes.greyStone}
               />
             }
@@ -287,18 +287,18 @@ export default function Feedback() {
             name="rating2"
             value={rating2}
             style={{
-              justifyContent: 'center',
-              alignItems: 'center',
+              justifyContent: "center",
+              alignItems: "center",
             }}
             precision={1}
             onChange={(_, value) => {
-              setRating2(value)
+              setRating2(value);
             }}
             icon={
-              <img src={coin} alt={'gold-coin'} className={classes.goldCoin} />
+              <img src={coin} alt={"gold-coin"} className={classes.goldCoin} />
             }
             emptyIcon={
-              <img src={coin} alt={'grey-coin'} className={classes.greyCoin} />
+              <img src={coin} alt={"grey-coin"} className={classes.greyCoin} />
             }
             className={classes.rating}
           />
@@ -311,9 +311,9 @@ export default function Feedback() {
               style={{
                 color: like,
                 fontSize: 45,
-                justifyContent: 'center',
-                alignItems: 'center',
-                cursor: 'pointer',
+                justifyContent: "center",
+                alignItems: "center",
+                cursor: "pointer",
               }}
               onMouseEnter={onEnterLike}
               onMouseLeave={onLeave}
@@ -325,9 +325,9 @@ export default function Feedback() {
               style={{
                 color: dislike,
                 fontSize: 45,
-                justifyContent: 'center',
-                alignItems: 'center',
-                cursor: 'pointer',
+                justifyContent: "center",
+                alignItems: "center",
+                cursor: "pointer",
               }}
               onMouseOver={onEnterDislike}
               onMouseLeave={onLeave}
@@ -347,20 +347,20 @@ export default function Feedback() {
             minLength="20"
             value={input}
             onChange={(e) => {
-              setInput(e.target.value)
+              setInput(e.target.value);
             }}
           />
         </Stack>
         <Box
           sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
+            display: "flex",
+            flexWrap: "wrap",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
 
-            '& > :not(style)': {
-              width: '200px',
+            "& > :not(style)": {
+              width: "200px",
               m: 1,
             },
           }}
@@ -380,5 +380,5 @@ export default function Feedback() {
         </Box>
       </Box>
     </form>
-  )
+  );
 }

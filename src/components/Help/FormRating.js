@@ -14,6 +14,16 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     margin: "40px 0px 60px 0px",
+    flexWrap: "wrap",
+  },
+  titleContainer: {
+    display: "flex",
+    width: "90%",
+    justifyContent: "center",
+    flexWrap: "wrap",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
   },
   title: {
     display: "flex",
@@ -22,6 +32,15 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 550,
     letterSpacing: 3,
     margin: "10px 0px 50px 0",
+    [theme.breakpoints.down("md")]: {
+      fontSize: 35,
+    },
+    // [theme.breakpoints.down("sm")]: {
+    //   fontSize: 25,
+    // },
+    // [theme.breakpoints.down("xs")]: {
+    //   fontSize: 20,
+    // },
   },
   subtitle: {
     display: "flex",
@@ -30,6 +49,15 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 550,
     letterSpacing: 3,
     color: "#f5d171",
+    [theme.breakpoints.down("md")]: {
+      fontSize: 35,
+    },
+    // [theme.breakpoints.down("sm")]: {
+    //   fontSize: 25,
+    // },
+    // [theme.breakpoints.down("xs")]: {
+    //   fontSize: 20,
+    // },
   },
   wrapContainer: {
     display: "flex",
@@ -67,6 +95,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Antonio",
     textAlign: "center",
     fontWeight: 550,
+
     [theme.breakpoints.down("md")]: {
       fontSize: 20,
     },
@@ -145,9 +174,9 @@ const FormRating = () => {
 
   return (
     <div className={classes.feedbackContainer}>
-      <div>
+      <div className={classes.titleContainer}>
         <Typography className={classes.title} variant="h4">
-          FEEDBACK BY &nbsp;
+          FEEDBACK COUNT:
           {loading ? (
             <CircularProgress
               style={{ color: "#c6cec6" }}
@@ -159,7 +188,6 @@ const FormRating = () => {
               {feedbacks}
             </Typography>
           )}
-          &nbsp; REAL USERS
         </Typography>
       </div>
       <div className={classes.wrapContainer}>
