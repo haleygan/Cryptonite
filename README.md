@@ -1,12 +1,13 @@
 ### Introduction:
-This is the Final Project of the 6 months IT Graduate Program in [Besquare Deriv](https://deriv.com/careers/besquare/), prepared by a team of five including myself.
+This is the Final Project of the 6 months IT Graduate Program in [Besquare Deriv](https://deriv.com/careers/besquare/), prepared by a team of five including myself. This 1 month effort summarizes the knowledge we learn about product design, architecture design, front-end and back-end development, product testing and project management.
 
 ### About our project: Cryptonite
 Cryptonite is a trading insights platform that provides 360 degree fundamental overview of Cryptocurrencies and Forex activities.
 
-Enter our page here : https://cryptonite5.netlify.app/
+Enter our page here!
+- https://cryptonite5.netlify.app/
 
-More about Cryptonite! 
+Introduction to Cryptonite
 - https://www.canva.com/design/DAE66SG1Pfs/mFuX2__TetRDzI3KyFNdUA/edit?utm_content=DAE66SG1Pfs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton#1 
 
 Technical Report: How we design Cryptonite 
