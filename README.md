@@ -16,12 +16,12 @@ In Cryptonite, we give real-time insights on Forex and Cryptocurrencies for trad
 **My contribution to team**:
 1. Involve in discussion for product and architecture design
 2. Pages in the website that I contributed:
-   a. FOREX (whole page)
+   - **FOREX**
       - established websocket connection to [Deriv API](https://api.deriv.com/docs/getting-started/implement-now/ticks-history) to stream live prices
-      - set up graph 
-   b. ABOUT US (whole page)
+      - coded real-time price graph and forex drop down list
+   - **ABOUT US** 
       - a fun page to showcase our team, the interesting design helps a lot in polishing my CSS skills
-   c. HELP (section: We'd love some feedback)
+   - **HELP** (Section: WE'D LOVE SOME FEEDBACK)
       - designed and coded the feedback form 
-      - established connection with Cloud Firestore (via Firebase) to send client feedback to our backend database
+      - established connection with Cloud Firestore (setted up by teammate) to send client feedback to our backend database
       - retrieve data from Cloud Firestore and return feedback count and average rating of our website
